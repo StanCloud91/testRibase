@@ -1,432 +1,185 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechBlog - Tu fuente de tecnología</title>
+    <title data-translate="title">TechBlog - Tu fuente de tecnología</title>
+    <meta name="description" content="Blog de tecnología con las últimas tendencias en IA, desarrollo web, ciberseguridad y más">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Blog Preview Section */
-        .blog-preview {
-            padding: 80px 0;
-            background: #f8f9fa;
-        }
-
-        .blog-preview h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .blog-image {
-            height: 200px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .blog-content {
-            padding: 1.5rem;
-        }
-
-        .blog-meta {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .blog-excerpt {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .read-more {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .read-more:hover {
-            text-decoration: underline;
-        }
-
-        /* Newsletter Section */
-        .newsletter {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .newsletter h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .newsletter p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .newsletter input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-        }
-
-        .newsletter button {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter button:hover {
-            background: #ff5252;
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .social-links {
-            margin-bottom: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #667eea;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .features-grid,
-            .blog-grid {
-                grid-template-columns: 1fr;
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                        accent: '#ff6b6b'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
             }
         }
-    </style>
+    </script>
 </head>
-<body>
+<body class="bg-gradient-to-br from-primary to-secondary min-h-screen">
     <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">TechBlog</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#articulos">Artículos</a></li>
-                <li><a href="#categorias">Categorías</a></li>
-                <li><a href="#sobre">Sobre Nosotros</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
+    <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-lg">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="logo text-2xl font-bold text-primary">
+                    <span data-translate="logo">TechBlog</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#home" class="nav-link text-gray-700 hover:text-primary transition-colors" data-translate="nav.home">Inicio</a></li>
+                    <li><a href="#articles" class="nav-link text-gray-700 hover:text-primary transition-colors" data-translate="nav.articles">Artículos</a></li>
+                    <li><a href="#categories" class="nav-link text-gray-700 hover:text-primary transition-colors" data-translate="nav.categories">Categorías</a></li>
+                    <li><a href="#about" class="nav-link text-gray-700 hover:text-primary transition-colors" data-translate="nav.about">Sobre Nosotros</a></li>
+                    <li><a href="#contact" class="nav-link text-gray-700 hover:text-primary transition-colors" data-translate="nav.contact">Contacto</a></li>
+                </ul>
+                
+                <!-- Language Selector -->
+                <div class="flex items-center space-x-4">
+                    <select id="language-selector" class="bg-transparent border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="fr">🇫🇷 Français</option>
+                    </select>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-primary">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <ul class="space-y-2">
+                    <li><a href="#home" class="block py-2 text-gray-700 hover:text-primary transition-colors" data-translate="nav.home">Inicio</a></li>
+                    <li><a href="#articles" class="block py-2 text-gray-700 hover:text-primary transition-colors" data-translate="nav.articles">Artículos</a></li>
+                    <li><a href="#categories" class="block py-2 text-gray-700 hover:text-primary transition-colors" data-translate="nav.categories">Categorías</a></li>
+                    <li><a href="#about" class="block py-2 text-gray-700 hover:text-primary transition-colors" data-translate="nav.about">Sobre Nosotros</a></li>
+                    <li><a href="#contact" class="block py-2 text-gray-700 hover:text-primary transition-colors" data-translate="nav.contact">Contacto</a></li>
+                </ul>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="container">
-            <h1>Descubre el Futuro de la Tecnología</h1>
-            <p>Mantente al día con las últimas tendencias, innovaciones y análisis profundos del mundo tecnológico. Tu fuente confiable de conocimiento digital.</p>
-            <a href="#articulos" class="cta-button">Explorar Artículos</a>
+    <section id="home" class="pt-24 pb-16 px-4">
+        <div class="container mx-auto text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg" data-translate="hero.title">
+                Descubre el Futuro de la Tecnología
+            </h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed" data-translate="hero.subtitle">
+                Mantente al día con las últimas tendencias, innovaciones y análisis profundos del mundo tecnológico. Tu fuente confiable de conocimiento digital.
+            </p>
+            <a href="#articles" class="inline-block bg-accent hover:bg-red-500 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl" data-translate="hero.cta">
+                Explorar Artículos
+            </a>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="categorias">
-        <div class="container">
-            <h2>¿Por qué elegir TechBlog?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
+    <section id="categories" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800" data-translate="features.title">
+                ¿Por qué elegir TechBlog?
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-5xl text-primary mb-6">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h3>Contenido Actualizado</h3>
-                    <p>Publicamos artículos diarios sobre las últimas tendencias tecnológicas, desde inteligencia artificial hasta desarrollo web.</p>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800" data-translate="features.updated.title">Contenido Actualizado</h3>
+                    <p class="text-gray-600 leading-relaxed" data-translate="features.updated.description">
+                        Publicamos artículos diarios sobre las últimas tendencias tecnológicas, desde inteligencia artificial hasta desarrollo web.
+                    </p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
+                
+                <div class="feature-card text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-5xl text-primary mb-6">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Comunidad Activa</h3>
-                    <p>Únete a una comunidad de entusiastas de la tecnología que comparten conocimientos y experiencias.</p>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800" data-translate="features.community.title">Comunidad Activa</h3>
+                    <p class="text-gray-600 leading-relaxed" data-translate="features.community.description">
+                        Únete a una comunidad de entusiastas de la tecnología que comparten conocimientos y experiencias.
+                    </p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
+                
+                <div class="feature-card text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-5xl text-primary mb-6">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Contenido Educativo</h3>
-                    <p>Tutoriales paso a paso, guías detalladas y análisis técnicos para todos los niveles de experiencia.</p>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800" data-translate="features.educational.title">Contenido Educativo</h3>
+                    <p class="text-gray-600 leading-relaxed" data-translate="features.educational.description">
+                        Tutoriales paso a paso, guías detalladas y análisis técnicos para todos los niveles de experiencia.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Blog Preview Section -->
-    <section class="blog-preview" id="articulos">
-        <div class="container">
-            <h2>Artículos Destacados</h2>
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-brain"></i>
+    <section id="articles" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800" data-translate="articles.title">
+                Artículos Destacados
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <i class="fas fa-brain text-white text-5xl"></i>
                     </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">15 de Diciembre, 2024 • Inteligencia Artificial</div>
-                        <h3 class="blog-title">El Futuro de la IA: Tendencias para 2025</h3>
-                        <p class="blog-excerpt">Exploramos las principales tendencias en inteligencia artificial que definirán el próximo año, desde GPT-5 hasta la computación cuántica.</p>
-                        <a href="#" class="read-more">Leer más →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">12 de Diciembre, 2024 • Desarrollo Web</div>
-                        <h3 class="blog-title">React 19: Las Nuevas Características</h3>
-                        <p class="blog-excerpt">Una guía completa sobre las nuevas características de React 19, incluyendo Server Components y mejoras en el rendimiento.</p>
-                        <a href="#" class="read-more">Leer más →</a>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2" data-translate="articles.ai.date">15 de Diciembre, 2024 • Inteligencia Artificial</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800" data-translate="articles.ai.title">El Futuro de la IA: Tendencias para 2025</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed" data-translate="articles.ai.excerpt">
+                            Exploramos las principales tendencias en inteligencia artificial que definirán el próximo año, desde GPT-5 hasta la computación cuántica.
+                        </p>
+                        <a href="#" class="text-primary font-bold hover:underline" data-translate="articles.read-more">Leer más →</a>
                     </div>
                 </article>
 
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-shield-alt"></i>
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <i class="fas fa-code text-white text-5xl"></i>
                     </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">10 de Diciembre, 2024 • Ciberseguridad</div>
-                        <h3 class="blog-title">Ciberseguridad en 2024: Amenazas y Soluciones</h3>
-                        <p class="blog-excerpt">Análisis de las principales amenazas cibernéticas del año y las mejores prácticas para proteger tu información.</p>
-                        <a href="#" class="read-more">Leer más →</a>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2" data-translate="articles.react.date">12 de Diciembre, 2024 • Desarrollo Web</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800" data-translate="articles.react.title">React 19: Las Nuevas Características</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed" data-translate="articles.react.excerpt">
+                            Una guía completa sobre las nuevas características de React 19, incluyendo Server Components y mejoras en el rendimiento.
+                        </p>
+                        <a href="#" class="text-primary font-bold hover:underline" data-translate="articles.read-more">Leer más →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2" data-translate="articles.security.date">10 de Diciembre, 2024 • Ciberseguridad</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800" data-translate="articles.security.title">Ciberseguridad en 2024: Amenazas y Soluciones</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed" data-translate="articles.security.excerpt">
+                            Análisis de las principales amenazas cibernéticas del año y las mejores prácticas para proteger tu información.
+                        </p>
+                        <a href="#" class="text-primary font-bold hover:underline" data-translate="articles.read-more">Leer más →</a>
                     </div>
                 </article>
             </div>
@@ -434,77 +187,38 @@
     </section>
 
     <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container">
-            <h2>Mantente Actualizado</h2>
-            <p>Suscríbete a nuestro boletín y recibe los artículos más destacados directamente en tu correo.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Tu dirección de correo electrónico" required>
-                <button type="submit">Suscribirse</button>
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4" data-translate="newsletter.title">Mantente Actualizado</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto" data-translate="newsletter.subtitle">
+                Suscríbete a nuestro boletín y recibe los artículos más destacados directamente en tu correo.
+            </p>
+            <form class="newsletter-form max-w-md mx-auto flex flex-col md:flex-row gap-4">
+                <input type="email" placeholder="Tu dirección de correo electrónico" required 
+                       class="flex-1 px-6 py-3 rounded-full border-0 focus:outline-none focus:ring-2 focus:ring-white text-gray-800"
+                       data-translate-placeholder="newsletter.placeholder">
+                <button type="submit" class="bg-accent hover:bg-red-500 text-white font-bold px-8 py-3 rounded-full transition-all duration-300 transform hover:-translate-y-1"
+                        data-translate="newsletter.button">Suscribirse</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="text-2xl hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-2xl hover:text-primary transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-2xl hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-primary transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-2xl hover:text-primary transition-colors"><i class="fab fa-youtube"></i></a>
             </div>
-            <p>&copy; 2024 TechBlog. Todos los derechos reservados.</p>
+            <p class="text-gray-400" data-translate="footer.copyright">&copy; 2024 TechBlog. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling para los enlaces de navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Efecto de parallax en el hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Animación de aparición de elementos
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Aplicar animación a las tarjetas
-        document.querySelectorAll('.feature-card, .blog-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
